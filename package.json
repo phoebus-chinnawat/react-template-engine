@@ -1,0 +1,35 @@
+{
+  "name": "react-template-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npx tailwindcss build src/styles/tailwind.scss -o dist/styles/tailwind.css",
+    "start": "npm run build && node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/register": "^7.24.6",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.19",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "express": "^4.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.77.4",
+    "tailwindcss": "^3.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^18.3.0"
+  }
+}
