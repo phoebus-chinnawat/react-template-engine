@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npx tailwindcss build src/styles/tailwind.scss -o dist/styles/tailwind.css",
-    "start": "npm run build && node dist/server.js"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && npx tailwindcss build src/styles/tailwind.scss -o dist/styles/tailwind.css",
+    "build:client": "webpack --config webpack.client.js",
+    "start": "npm run build && npm run build:client && node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +28,13 @@
     "react-dom": "^18.3.1",
     "sass": "^1.77.4",
     "tailwindcss": "^3.4.4",
+    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@types/react-dom": "^18.3.0"
+    "@types/react-dom": "^18.3.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
