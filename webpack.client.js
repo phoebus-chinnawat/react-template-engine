@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/client.tsx',
+  entry: {
+    client: './src/client.tsx',
+    preview: './src/previewClient.tsx'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
