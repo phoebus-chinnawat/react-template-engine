@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    client: './src/client.tsx',
-    preview: './src/previewClient.tsx'
+    templateA: './src/TemplateA/clientScript.tsx',
+    editor: './src/Editor/editorTemplateA.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

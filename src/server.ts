@@ -1,23 +1,33 @@
+// server.ts
 import express, { Request, Response } from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import path from 'path';
-import { App } from './App';
+import { TemplateA } from './TemplateA/App';
 import { BusinessData } from './types';
-import { PreviewApp } from './Preview';
+import App from './Editor/App';
 
 const sampleBusinessData: BusinessData = {
   shopName: 'The Coffee House',
   description: 'A cozy place to enjoy your favorite coffee.',
   location: '123 Java Street, Caffeine City',
   reviewers: [
-      { name: 'John Doe', review: 'Great coffee and atmosphere!' },
-      { name: 'Jane Smith', review: 'A perfect place to relax and work.' }
+    { name: 'John Doe', review: 'Great coffee and atmosphere!' },
+    { name: 'Jane Smith', review: 'A perfect place to relax and work.' }
   ],
   contacts: {
-      phone: '123-456-7890',
-      email: 'info@coffeehouse.com'
-  }
+    phone: '123-456-7890',
+    email: 'info@coffeehouse.com'
+  },
+  sections: [
+    {
+      id: 1,
+      title: 'Special Offers',
+      widgets: [
+        { id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }
+      ]
+    }
+  ] // Sample section with widgets
 };
 
 const app = express();
@@ -32,15 +42,15 @@ app.get('/', async (req: Request, res: Response) => {
     description: sampleBusinessData.description,
     location: sampleBusinessData.location,
     reviewers: sampleBusinessData.reviewers,
-    contacts: {
-        phone: sampleBusinessData.contacts.phone,
-        email: sampleBusinessData.contacts.email
-    }
+    contacts: sampleBusinessData.contacts,
+    sections: sampleBusinessData.sections // Include sections in the data
   };
   let appString = '';
-  const AppElement = React.createElement(App, { business: businessData })
+  const AppElement = React.createElement(TemplateA, { business: businessData });
+  
   if (isPreview) {
-    appString = ReactDOMServer.renderToString(React.createElement(PreviewApp, { business: businessData, children: AppElement }));
+    const EditorElement = React.createElement(App, { business: businessData, children: AppElement });
+    appString = ReactDOMServer.renderToString(EditorElement);
   } else {
     appString = ReactDOMServer.renderToString(AppElement);
   }
@@ -49,15 +59,15 @@ app.get('/', async (req: Request, res: Response) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>React SSR Template Engine</title>
-        <link href="/styles/tailwind.css" rel="stylesheet"/>
+        <title>${businessData.shopName}</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
       <body>
         <div id="root">${appString}</div>
         <script>
           window.__INITIAL_DATA__ = ${JSON.stringify({ business: businessData })};
         </script>
-        <script src="/${isPreview ? 'preview' : 'client'}.bundle.js"></script>
+        <script src="/${isPreview ? 'editor' : 'templateA'}.bundle.js"></script>
       </body>
     </html>
   `;

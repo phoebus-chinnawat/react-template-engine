@@ -7,7 +7,8 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc && npx tailwindcss build src/styles/tailwind.scss -o dist/styles/tailwind.css",
     "build:client": "webpack --config webpack.client.js",
-    "start": "npm run build && npm run build:client && node dist/server.js"
+    "start:dev": "npm run build && npm run build:client && npm run dev",
+    "dev": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "@babel/register": "^7.24.6",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
+    "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.19",
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.2",
@@ -27,6 +30,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
+    "recoil": "^0.7.7",
     "sass": "^1.77.4",
     "tailwindcss": "^3.4.4",
     "ts-loader": "^9.5.1",
@@ -35,6 +39,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^18.3.0",
+    "nodemon": "^3.1.4",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
   }
