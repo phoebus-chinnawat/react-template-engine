@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
-import { BusinessData, Widget } from '../../../types';
+import { BusinessData, Widget } from '../../types';
 import WidgetRegistry from '../widgets/WidgetRegistry';
 
 interface EditorProps {

@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/system';
 import CoffeeIcon from '@mui/icons-material/Coffee'; // Example logo icon, replace with your own logo
-import { BusinessData } from '../../../../types';
+import { BusinessData } from '../../../types';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,

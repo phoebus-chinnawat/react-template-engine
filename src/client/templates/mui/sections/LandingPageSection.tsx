@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
-import { BusinessData } from '../../../../types';
+import { BusinessData } from '../../../types';
 import { Content } from '../components/Content';
 
 const BackgroundImage = styled(Box)(({ theme }) => ({

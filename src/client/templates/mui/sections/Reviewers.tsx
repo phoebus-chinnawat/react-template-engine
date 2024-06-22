@@ -3,7 +3,7 @@ import { Section } from '../components/Section';
 import { Container, Grid, Typography } from '@mui/material';
 import { ReviewCard } from '../components/ReviewCard';
 import React from 'react';
-import { BusinessData } from '../../../../types';
+import { BusinessData } from '../../../types';
 
 interface IReviewersProps {
   data: BusinessData;

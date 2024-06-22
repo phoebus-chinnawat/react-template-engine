@@ -1,9 +1,11 @@
-const path = require('path');
+import { Configuration } from 'webpack';
+import * as path from 'path';
+import script from './src/templateConfig.json';
 
-module.exports = {
+const config: Configuration = {
   entry: {
-    templateA: './src/client/templates/mui/clientScript.tsx',
-    editor: './src/client/Editor/editorTemplateA.tsx'
+    [script.muiTemplate.script]: './src/client/templates/mui/clientScript.tsx',
+    [script.muiTemplate.previewScript]: './src/client/Editor/editorTemplateA.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -32,3 +34,5 @@ module.exports = {
     ],
   },
 };
+
+export default config;

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "webpack --config webpack.client.js",
-    "dev": "webpack --config webpack.client.js --watch",
+    "build": "webpack --config webpack.client.ts",
+    "dev": "webpack --config webpack.client.ts --watch",
     "dev:server": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "keywords": [],

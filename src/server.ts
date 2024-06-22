@@ -3,8 +3,9 @@ import express, { Request, Response } from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import path from 'path';
-import { TemplateA } from './client/templates/mui/App';
-import { BusinessData } from './types';
+import { MuiTemplate } from './client/templates/mui/App';
+import { BusinessData } from './client/types';
+import templateConfig from './templateConfig.json';
 import App from './client/Editor/App';
 
 const sampleBusinessData: BusinessData = {
@@ -46,7 +47,7 @@ app.get('/', async (req: Request, res: Response) => {
     sections: sampleBusinessData.sections // Include sections in the data
   };
   let appString = '';
-  const AppElement = React.createElement(TemplateA, { business: businessData });
+  const AppElement = React.createElement(MuiTemplate, { business: businessData });
   
   if (isPreview) {
     const EditorElement = React.createElement(App, { business: businessData, children: AppElement });
@@ -67,7 +68,7 @@ app.get('/', async (req: Request, res: Response) => {
         <script>
           window.__INITIAL_DATA__ = ${JSON.stringify({ business: businessData })};
         </script>
-        <script src="/${isPreview ? 'editor' : 'templateA'}.bundle.js"></script>
+        <script src="/${isPreview ? templateConfig.muiTemplate.previewScript : templateConfig.muiTemplate.script}.bundle.js"></script>
       </body>
     </html>
   `;
