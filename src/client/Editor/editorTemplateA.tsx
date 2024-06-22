@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { TemplateA } from "../TemplateA/App";
+import { TemplateA } from "../templates/mui/App";
 
 const business = (window as any).__INITIAL_DATA__.business;
 const rootNode = document.getElementById("root");

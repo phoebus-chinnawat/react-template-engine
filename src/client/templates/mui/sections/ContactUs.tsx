@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Section } from '../components/Section';
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { BusinessData } from '../../types';
+import { BusinessData } from '../../../../types';
 
 interface IContactUsProps {
   data: BusinessData;

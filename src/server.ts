@@ -3,9 +3,9 @@ import express, { Request, Response } from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import path from 'path';
-import { TemplateA } from './TemplateA/App';
+import { TemplateA } from './client/templates/mui/App';
 import { BusinessData } from './types';
-import App from './Editor/App';
+import App from './client/Editor/App';
 
 const sampleBusinessData: BusinessData = {
   shopName: 'The Coffee House',

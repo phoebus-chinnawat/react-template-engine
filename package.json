@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc && npx tailwindcss build src/styles/tailwind.scss -o dist/styles/tailwind.css",
-    "build:client": "webpack --config webpack.client.js",
-    "start:dev": "npm run build && npm run build:client && npm run dev",
-    "dev": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
+    "build": "webpack --config webpack.client.js",
+    "dev": "webpack --config webpack.client.js --watch",
+    "dev:server": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "keywords": [],
   "author": "",

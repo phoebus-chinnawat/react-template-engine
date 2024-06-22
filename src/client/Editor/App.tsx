@@ -2,7 +2,7 @@
 import React, { FC, ReactNode, useCallback, useState } from 'react';
 import { Grid, Typography, Box, styled, ThemeProvider, CssBaseline } from '@mui/material';
 import Editor from './components/Editor';
-import { BusinessData, Section, Widget } from '../types';
+import { BusinessData, Section, Widget } from '../../types';
 import theme from './theme';
 import WidgetRegistry from './widgets/WidgetRegistry';
 

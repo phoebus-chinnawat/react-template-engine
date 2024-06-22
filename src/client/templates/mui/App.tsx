@@ -1,5 +1,5 @@
 import React from "react";
-import { BusinessData } from "../types";
+import { BusinessData } from "../../../types";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, Theme } from "@mui/material";
 // import { AppBar } from "./components/AppBar";
