@@ -1,12 +1,11 @@
 // server.ts
 import express, { Request, Response } from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import path from 'path';
-import { MuiTemplate } from './client/templates/mui/App';
+import { buildHtml } from './builder/html';
+import { buildReactString } from './builder/react';
 import { BusinessData } from './client/types';
-import templateConfig from './templateConfig.json';
-import App from './client/Editor/App';
+import { templateConfig } from './templateConfig';
+import { TemplateName } from './types';
 
 const sampleBusinessData: BusinessData = {
   shopName: 'The Coffee House',
@@ -34,42 +33,17 @@ const app = express();
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
 app.use('/', express.static(path.join(__dirname, '../dist')));
 
-app.get('/', async (req: Request, res: Response) => {
-  const isPreview = req.query.isPreview || false;
-  const businessData: BusinessData = {
-    shopName: sampleBusinessData.shopName,
-    description: sampleBusinessData.description,
-    location: sampleBusinessData.location,
-    reviewers: sampleBusinessData.reviewers,
-    contacts: sampleBusinessData.contacts,
-    sections: sampleBusinessData.sections, // Include sections in the data
-  };
-  let appString = '';
-  const AppElement = React.createElement(MuiTemplate, { business: businessData });
+app.get('/:templateName', async (req: Request, res: Response) => {
+  const templateName = req.params.templateName as unknown as TemplateName;
+  const isPreview = !!req.query.isPreview || false;
 
-  if (isPreview) {
-    const EditorElement = React.createElement(App, { business: businessData }, AppElement);
-    appString = ReactDOMServer.renderToString(EditorElement);
-  } else {
-    appString = ReactDOMServer.renderToString(AppElement);
+  if (!templateConfig[templateName]) {
+    res.status(404).send('Template not found');
+    return;
   }
 
-  const html = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>${businessData.shopName}</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </head>
-      <body>
-        <div id="root">${appString}</div>
-        <script>
-          window.__INITIAL_DATA__ = ${JSON.stringify({ business: businessData })};
-        </script>
-        <script src="/${isPreview ? templateConfig.muiTemplate.previewScript : templateConfig.muiTemplate.script}.bundle.js"></script>
-      </body>
-    </html>
-  `;
+  const appString = buildReactString(isPreview, templateName, sampleBusinessData);
+  const html = buildHtml(sampleBusinessData, appString, templateName, isPreview);
 
   res.send(html);
 });

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import React from 'react';
 import { BusinessData } from '../../../types';
 import { Content } from '../components/Content';
 

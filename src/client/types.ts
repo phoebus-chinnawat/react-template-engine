@@ -18,3 +18,7 @@ export interface BusinessData {
   contacts: { phone: string; email: string };
   sections: Section[];
 }
+
+export interface AppProps {
+  business: BusinessData;
+}

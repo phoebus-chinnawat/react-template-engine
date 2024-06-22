@@ -1,19 +1,19 @@
-import React, { FC, useState } from 'react';
+import CoffeeIcon from '@mui/icons-material/Coffee'; // Example logo icon, replace with your own logo
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
-  Toolbar,
-  Typography,
+  Box,
   Button,
-  IconButton,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemText,
-  Box,
+  Toolbar,
+  Typography,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/system';
-import CoffeeIcon from '@mui/icons-material/Coffee'; // Example logo icon, replace with your own logo
+import React, { FC, useState } from 'react';
 import { BusinessData } from '../../../types';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({

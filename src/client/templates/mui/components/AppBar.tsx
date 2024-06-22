@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { BusinessData } from '../../../types';
+import AdbIcon from '@mui/icons-material/Adb';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar as AppBarMui,
   Avatar,
@@ -13,8 +13,8 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
-import MenuIcon from '@mui/icons-material/Menu';
+import React, { FC } from 'react';
+import { BusinessData } from '../../../types';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];

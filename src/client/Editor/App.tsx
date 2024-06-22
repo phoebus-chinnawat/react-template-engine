@@ -1,8 +1,8 @@
 // App.tsx
+import { Box, CssBaseline, Grid, styled, ThemeProvider, Typography } from '@mui/material';
 import React, { FC, ReactNode, useCallback, useState } from 'react';
-import { Grid, Typography, Box, styled, ThemeProvider, CssBaseline } from '@mui/material';
-import Editor from './components/Editor';
 import { BusinessData, Section, Widget } from '../types';
+import Editor from './components/Editor';
 import theme from './theme';
 import WidgetRegistry from './widgets/WidgetRegistry';
 

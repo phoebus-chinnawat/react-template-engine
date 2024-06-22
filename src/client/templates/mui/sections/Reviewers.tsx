@@ -1,9 +1,8 @@
-import { FC } from 'react';
-import { Section } from '../components/Section';
 import { Container, Grid, Typography } from '@mui/material';
-import { ReviewCard } from '../components/ReviewCard';
-import React from 'react';
+import React, { FC } from 'react';
 import { BusinessData } from '../../../types';
+import { ReviewCard } from '../components/ReviewCard';
+import { Section } from '../components/Section';
 
 interface IReviewersProps {
   data: BusinessData;

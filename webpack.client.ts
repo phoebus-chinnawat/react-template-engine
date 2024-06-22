@@ -1,11 +1,13 @@
-import { Configuration } from 'webpack';
 import * as path from 'path';
-import script from './src/templateConfig.json';
+import { Configuration } from 'webpack';
+import { templateConfig } from './src/templateConfig';
 
 const config: Configuration = {
   entry: {
-    [script.muiTemplate.script]: './src/client/templates/mui/index.tsx',
-    [script.muiTemplate.previewScript]: './src/client/Editor/templates/mui.tsx',
+    [templateConfig.mui.script]: './src/client/templates/mui/index.tsx',
+    [templateConfig.mui.previewScript]: './src/client/Editor/templates/mui.tsx',
+    [templateConfig.tailwind.script]: './src/client/templates/tailwind/index.tsx',
+    [templateConfig.tailwind.previewScript]: './src/client/Editor/templates/tailwind.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -30,6 +32,10 @@ const config: Configuration = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },

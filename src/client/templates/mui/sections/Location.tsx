@@ -1,8 +1,7 @@
-import { FC } from 'react';
-import { Section } from '../components/Section';
 import { Container, Typography } from '@mui/material';
+import React, { FC } from 'react';
 import { BusinessData } from '../../../types';
-import React from 'react';
+import { Section } from '../components/Section';
 
 interface ILocationProps {
   data: BusinessData;
