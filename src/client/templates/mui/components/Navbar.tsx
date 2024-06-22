@@ -1,5 +1,16 @@
 import React, { FC, useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Box } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/system';
 import CoffeeIcon from '@mui/icons-material/Coffee'; // Example logo icon, replace with your own logo
@@ -13,7 +24,7 @@ interface NavBarProps {
   data: BusinessData;
 }
 
-export const Navbar: FC<NavBarProps> = (props) => {
+export const Navbar: FC<NavBarProps> = props => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -46,7 +57,13 @@ export const Navbar: FC<NavBarProps> = (props) => {
     <>
       <StyledAppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ display: { sm: 'none' } }} onClick={handleDrawerToggle}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ display: { sm: 'none' } }}
+            onClick={handleDrawerToggle}
+          >
             <MenuIcon />
           </IconButton>
           <CoffeeIcon sx={{ mr: 2 }} />

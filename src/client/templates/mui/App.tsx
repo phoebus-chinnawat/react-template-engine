@@ -1,7 +1,7 @@
-import React from "react";
-import { BusinessData } from "../../types";
-import { ThemeProvider } from "@emotion/react";
-import { createTheme, Theme } from "@mui/material";
+import React from 'react';
+import { BusinessData } from '../../types';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme, Theme } from '@mui/material';
 // import { AppBar } from "./components/AppBar";
 import CssBaseline from '@mui/material/CssBaseline';
 import LandingPageSection from './sections/LandingPageSection';
@@ -25,15 +25,15 @@ const theme: Theme = createTheme({
   },
 });
 
-export const MuiTemplate: React.FC<AppProps> = (props) => {
+export const MuiTemplate: React.FC<AppProps> = props => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar data={props.business} />
       <LandingPageSection business={props.business} />
-      <Location data={props.business}/>
-      <Reviewers data={props.business}/>
-      <ContactUs data={props.business}/>
+      <Location data={props.business} />
+      <Reviewers data={props.business} />
+      <ContactUs data={props.business} />
     </ThemeProvider>
   );
 };

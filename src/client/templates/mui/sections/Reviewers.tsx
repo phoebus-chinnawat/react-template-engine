@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 import { Section } from '../components/Section';
 import { Container, Grid, Typography } from '@mui/material';
 import { ReviewCard } from '../components/ReviewCard';
@@ -9,9 +9,9 @@ interface IReviewersProps {
   data: BusinessData;
 }
 
-export const Reviewers: FC<IReviewersProps> = (props) => {
+export const Reviewers: FC<IReviewersProps> = props => {
   return (
-    <Section style={{ backgroundColor: "#f4f4f4" }}>
+    <Section style={{ backgroundColor: '#f4f4f4' }}>
       <Container>
         <Typography variant="h4" component="h2" gutterBottom>
           Customer Reviews

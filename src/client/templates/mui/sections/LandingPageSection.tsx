@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { BusinessData } from '../../../types';
 import { Content } from '../components/Content';
@@ -32,7 +32,7 @@ interface LandingPageSection {
   business: BusinessData;
 }
 
-const LandingPageSection: React.FC<LandingPageSection> = (props) => {
+const LandingPageSection: React.FC<LandingPageSection> = props => {
   return (
     <BackgroundImage>
       <Content>
@@ -40,7 +40,7 @@ const LandingPageSection: React.FC<LandingPageSection> = (props) => {
           {props.business.shopName}
         </Typography>
         <Typography variant="h5" paragraph>
-        {props.business.description}
+          {props.business.description}
         </Typography>
         <Button variant="contained" color="primary">
           Explore Menu

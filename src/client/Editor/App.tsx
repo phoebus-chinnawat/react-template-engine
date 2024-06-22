@@ -35,11 +35,11 @@ interface IPreviewAppProps {
   business: BusinessData;
 }
 
-const App: FC<IPreviewAppProps> = (props) => {
+const App: FC<IPreviewAppProps> = props => {
   const [business, setBusiness] = useState<BusinessData>(props.business);
 
   const onSubmit = useCallback((data: BusinessData) => {
-    console.log("data", data);
+    console.log('data', data);
     setBusiness(data);
   }, []);
 
@@ -48,8 +48,8 @@ const App: FC<IPreviewAppProps> = (props) => {
       <CssBaseline />
       <StyledGridContainer container spacing={0.5}>
         <StyledSidebar item xs={3}>
-          <Typography variant='h5'>SekWeb.site</Typography>
-          <Editor data={business} onChange={(data) => setBusiness(data)} />
+          <Typography variant="h5">SekWeb.site</Typography>
+          <Editor data={business} onChange={data => setBusiness(data)} />
         </StyledSidebar>
         <StyledMainContent item xs={9}>
           {props.render ? props.render(business) : props.children}
@@ -58,7 +58,9 @@ const App: FC<IPreviewAppProps> = (props) => {
               <Typography variant="h6">{section.title}</Typography>
               {section.widgets.map((widget: Widget) => {
                 const WidgetComponent = WidgetRegistry[widget.type];
-                return WidgetComponent ? <WidgetComponent key={widget.id} {...widget.props} /> : null;
+                return WidgetComponent ? (
+                  <WidgetComponent key={widget.id} {...widget.props} />
+                ) : null;
               })}
             </Box>
           ))}

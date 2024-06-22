@@ -4,8 +4,8 @@ import script from './src/templateConfig.json';
 
 const config: Configuration = {
   entry: {
-    [script.muiTemplate.script]: './src/client/templates/mui/clientScript.tsx',
-    [script.muiTemplate.previewScript]: './src/client/Editor/editorTemplateA.tsx'
+    [script.muiTemplate.script]: './src/client/templates/mui/index.tsx',
+    [script.muiTemplate.previewScript]: './src/client/Editor/templates/mui.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

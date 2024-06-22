@@ -1,14 +1,14 @@
-import { FC } from "react";
+import { FC } from 'react';
 import { Section } from '../components/Section';
 import { Container, Typography } from '@mui/material';
 import { BusinessData } from '../../../types';
 import React from 'react';
 
 interface ILocationProps {
-  data: BusinessData
+  data: BusinessData;
 }
 
-export const Location: FC<ILocationProps> = (props) => {
+export const Location: FC<ILocationProps> = props => {
   return (
     <Section>
       <Container>

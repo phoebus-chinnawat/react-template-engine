@@ -17,12 +17,17 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   return (
     <div>
       <h2>Countdown</h2>
-      <div>{timeLeft.days} Days {timeLeft.hours} Hours {timeLeft.minutes} Minutes {timeLeft.seconds} Seconds</div>
+      <div>
+        {timeLeft.days} Days {timeLeft.hours} Hours {timeLeft.minutes} Minutes {timeLeft.seconds}{' '}
+        Seconds
+      </div>
     </div>
   );
 };
 
-const calculateTimeLeft = (targetDate: string): Partial<{ days: number, hours: number, minutes: number, seconds: number }> => {
+const calculateTimeLeft = (
+  targetDate: string,
+): Partial<{ days: number; hours: number; minutes: number; seconds: number }> => {
   const difference = +new Date(targetDate) - +new Date();
   let timeLeft = {};
 

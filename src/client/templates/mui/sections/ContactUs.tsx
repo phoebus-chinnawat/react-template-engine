@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 import { Section } from '../components/Section';
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
@@ -6,21 +6,17 @@ import { BusinessData } from '../../../types';
 
 interface IContactUsProps {
   data: BusinessData;
-};
+}
 
-export const ContactUs: FC<IContactUsProps> = (props) => {
-    return (
-      <Section>
+export const ContactUs: FC<IContactUsProps> = props => {
+  return (
+    <Section>
       <Container>
         <Typography variant="h4" component="h2" gutterBottom>
           Contact Us
         </Typography>
-        <Typography variant="body1">
-          Phone: {props.data.contacts.phone}
-        </Typography>
-        <Typography variant="body1">
-          Email: {props.data.contacts.email}
-        </Typography>
+        <Typography variant="body1">Phone: {props.data.contacts.phone}</Typography>
+        <Typography variant="body1">Email: {props.data.contacts.email}</Typography>
         <Box component="form" mt={3}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -41,5 +37,5 @@ export const ContactUs: FC<IContactUsProps> = (props) => {
         </Box>
       </Container>
     </Section>
-    );
-}
+  );
+};

@@ -14,21 +14,19 @@ const sampleBusinessData: BusinessData = {
   location: '123 Java Street, Caffeine City',
   reviewers: [
     { name: 'John Doe', review: 'Great coffee and atmosphere!' },
-    { name: 'Jane Smith', review: 'A perfect place to relax and work.' }
+    { name: 'Jane Smith', review: 'A perfect place to relax and work.' },
   ],
   contacts: {
     phone: '123-456-7890',
-    email: 'info@coffeehouse.com'
+    email: 'info@coffeehouse.com',
   },
   sections: [
     {
       id: 1,
       title: 'Special Offers',
-      widgets: [
-        { id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }
-      ]
-    }
-  ] // Sample section with widgets
+      widgets: [{ id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }],
+    },
+  ], // Sample section with widgets
 };
 
 const app = express();
@@ -44,13 +42,13 @@ app.get('/', async (req: Request, res: Response) => {
     location: sampleBusinessData.location,
     reviewers: sampleBusinessData.reviewers,
     contacts: sampleBusinessData.contacts,
-    sections: sampleBusinessData.sections // Include sections in the data
+    sections: sampleBusinessData.sections, // Include sections in the data
   };
   let appString = '';
   const AppElement = React.createElement(MuiTemplate, { business: businessData });
-  
+
   if (isPreview) {
-    const EditorElement = React.createElement(App, { business: businessData, children: AppElement });
+    const EditorElement = React.createElement(App, { business: businessData }, AppElement);
     appString = ReactDOMServer.renderToString(EditorElement);
   } else {
     appString = ReactDOMServer.renderToString(AppElement);
