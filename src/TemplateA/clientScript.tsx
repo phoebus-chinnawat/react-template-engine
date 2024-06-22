@@ -8,6 +8,6 @@ if (rootNode) {
   const root = createRoot(rootNode);  
   root.render(<TemplateA business={business} />);
 } else {
-  console.error('cannot create root');
+  console.error('cannot create test');
 }
 
