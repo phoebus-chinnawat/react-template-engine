@@ -1,8 +1,10 @@
 export type TemplateName = 'mui' | 'tailwind';
-export type TemplateConfig = {
-  [key in TemplateName]: TemplateScript;
+export type TemplateConfigMapping = {
+  [key in TemplateName]: TemplateConfig;
 };
-export interface TemplateScript {
+export interface TemplateConfig {
+  html: string;
+  previewHtml: string;
   script: string;
   previewScript: string;
 }

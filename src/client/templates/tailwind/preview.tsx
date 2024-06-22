@@ -6,7 +6,6 @@ import { publish } from '../../service/publish';
 import { BusinessData } from '../../types';
 import { TailwindTemplate } from './App';
 
-const business = initialData;
 const rootNode = document.getElementById('root');
 const onPublish = async (data: BusinessData) => {
   publish('tailwind', data);
@@ -15,9 +14,9 @@ if (rootNode) {
   const root = createRoot(rootNode);
   root.render(
     <PreviewApp
-      business={business}
+      business={initialData}
       onPublish={onPublish}
-      render={businessData => <TailwindTemplate business={businessData} />}
+      render={initialData => <TailwindTemplate business={initialData} />}
     />,
   );
 } else {
