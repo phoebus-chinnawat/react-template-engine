@@ -4,6 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "jsx": "react",
+    "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,

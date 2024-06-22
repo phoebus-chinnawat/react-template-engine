@@ -1,8 +1,12 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import { Configuration } from 'webpack';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import { templateConfig } from './src/templateConfig';
 
-const config: Configuration = {
+const config: Configuration & DevServerConfiguration = {
+  mode: 'development',
+  devtool: 'inline-source-map',
   entry: {
     [templateConfig.mui.script]: './src/client/templates/mui/index.tsx',
     [templateConfig.mui.previewScript]: './src/client/templates/mui/preview.tsx',
@@ -44,6 +48,34 @@ const config: Configuration = {
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/mui/index.html',
+      filename: 'mui.html',
+      chunks: [templateConfig.mui.script],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/mui/preview.html',
+      filename: 'mui-preview.html',
+      chunks: [templateConfig.mui.previewScript],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/tailwind/index.html',
+      filename: 'tailwind.html',
+      chunks: [templateConfig.tailwind.script],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/tailwind/preview.html',
+      filename: 'tailwind-preview.html',
+      chunks: [templateConfig.tailwind.previewScript],
+    }),
+  ],
+  devServer: {
+    static: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    hot: true,
   },
 };
 

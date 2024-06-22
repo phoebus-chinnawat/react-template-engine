@@ -8,9 +8,11 @@ import WidgetRegistry from '../widgets/WidgetRegistry';
 interface EditorProps {
   data: BusinessData;
   onChange: (data: BusinessData) => void;
+  onSubmit: (data: BusinessData) => void;
+  onPublish: (data: BusinessData) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ data, onChange }) => {
+const Editor: React.FC<EditorProps> = ({ data, onChange, onSubmit, onPublish }) => {
   const { control, handleSubmit, register } = useForm({
     defaultValues: data,
   });
@@ -19,10 +21,6 @@ const Editor: React.FC<EditorProps> = ({ data, onChange }) => {
     control,
     name: 'sections',
   });
-
-  const onSubmit = (formData: BusinessData) => {
-    onChange(formData);
-  };
 
   const addWidget = (sectionIndex: number, widgetType: string) => {
     const newSections = [...data.sections];
@@ -54,7 +52,10 @@ const Editor: React.FC<EditorProps> = ({ data, onChange }) => {
           render={({ field }) => <TextField fullWidth label="Phone" {...field} />}
         />
         <Button variant="contained" color="primary" type="submit">
-          Submit
+          Update
+        </Button>
+        <Button variant="contained" color="secondary" type="button" onClick={() => onPublish(data)}>
+          Publish
         </Button>
         <Button
           variant="outlined"

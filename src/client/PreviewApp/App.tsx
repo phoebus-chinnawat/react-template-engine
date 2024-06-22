@@ -1,6 +1,7 @@
 // App.tsx
 import { Box, CssBaseline, Grid, styled, ThemeProvider, Typography } from '@mui/material';
-import React, { FC, ReactNode, useCallback, useState } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { BusinessData, Section, Widget } from '../types';
 import Editor from './components/Editor';
 import theme from './theme';
@@ -33,15 +34,22 @@ interface IPreviewAppProps {
   children?: ReactNode;
   render?: (business: BusinessData) => ReactNode;
   business: BusinessData;
+  onPublish: (data: BusinessData) => Promise<void>;
 }
 
-const App: FC<IPreviewAppProps> = props => {
-  const [business, setBusiness] = useState<BusinessData>(props.business);
+const PreviewApp: FC<IPreviewAppProps> = props => {
+  const { business: initialBuiness, onPublish } = props;
+  const [business, setBusiness] = useLocalStorage<BusinessData>('bussinessData', initialBuiness);
 
-  const onSubmit = useCallback((data: BusinessData) => {
-    console.log('data', data);
+  useEffect(() => {
+    if (!business) {
+      setBusiness(initialBuiness);
+    }
+  }, [initialBuiness]);
+
+  const onSubmit = (data: BusinessData) => {
     setBusiness(data);
-  }, []);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +57,12 @@ const App: FC<IPreviewAppProps> = props => {
       <StyledGridContainer container spacing={0.5}>
         <StyledSidebar item xs={3}>
           <Typography variant="h5">SekWeb.site</Typography>
-          <Editor data={business} onChange={data => setBusiness(data)} />
+          <Editor
+            data={business}
+            onChange={data => setBusiness(data)}
+            onSubmit={data => onSubmit(data)}
+            onPublish={data => onPublish(data)}
+          />
         </StyledSidebar>
         <StyledMainContent item xs={9}>
           {props.render ? props.render(business) : props.children}
@@ -70,4 +83,4 @@ const App: FC<IPreviewAppProps> = props => {
   );
 };
 
-export default App;
+export default PreviewApp;

@@ -8,14 +8,14 @@
     "build": "webpack --config webpack.client.ts",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write .",
-    "dev": "webpack --config webpack.client.ts --watch",
+    "dev": "webpack serve --config webpack.dev.ts",
+    "dev:watch": "webpack --config webpack.client.ts --watch",
     "dev:server": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "^10.4.19",
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
@@ -25,11 +25,16 @@
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.19",
+    "@types/archiver": "^6.0.2",
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
+    "archiver": "^7.0.1",
+    "autoprefixer": "^10.4.19",
+    "body-parser": "^1.20.2",
     "css-loader": "^7.1.2",
     "express": "^4.19.2",
+    "html-webpack-plugin": "^5.6.0",
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "react": "^18.3.1",
@@ -45,6 +50,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^18.3.0",
+    "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "eslint": "^8.57.0",
@@ -55,7 +61,7 @@
     "prettier": "^3.3.2",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.6.5",
-    "webpack": "^5.91.0",
+    "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
   }
 }
