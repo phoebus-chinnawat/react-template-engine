@@ -2,8 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { MuiTemplate } from './App';
 import PreviewApp from '../../PreviewApp/App';
+import { initialData } from '../../../initialData';
 
-const business = window.__INITIAL_DATA__.business;
+const business = initialData;
 const rootNode = document.getElementById('root');
 if (rootNode) {
   const root = createRoot(rootNode);

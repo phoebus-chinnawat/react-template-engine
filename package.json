@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.client.ts",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write .",
-    "dev": "webpack --config webpack.client.ts --watch",
+    "dev": "webpack serve --config webpack.dev.ts",
+    "dev:watch": "webpack --config webpack.client.ts --watch",
     "dev:server": "nodemon --watch \"src/server.ts\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/server.ts\""
   },
   "keywords": [],
@@ -30,6 +31,7 @@
     "autoprefixer": "^10.4.19",
     "css-loader": "^7.1.2",
     "express": "^4.19.2",
+    "html-webpack-plugin": "^5.6.0",
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "react": "^18.3.1",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^18.3.0",
+    "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "eslint": "^8.57.0",

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mui Template</title>
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    window.__INITIAL_DATA__ = {
+      business: {
+        shopName: 'The Coffee House',
+        description: 'A cozy place to enjoy your favorite coffee.',
+        location: '123 Java Street, Caffeine City',
+        reviewers: [
+          { name: 'John Doe', review: 'Great coffee and atmosphere!' },
+          { name: 'Jane Smith', review: 'A perfect place to relax and work.' },
+        ],
+        contacts: {
+          phone: '123-456-7890',
+          email: 'info@coffeehouse.com',
+        },
+        sections: [
+          {
+            id: 1,
+            title: 'Special Offers',
+            widgets: [{ id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }],
+          },
+        ],
+      }
+    };
+  </script>
+  <script src="/tailwindPreview.bundle.js"></script>
+</body>
+
+</html>

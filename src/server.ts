@@ -1,32 +1,12 @@
 // server.ts
 import express, { Request, Response } from 'express';
 import path from 'path';
-import { buildReactString } from './builder/react';
-import { BusinessData } from './client/types';
+import { buildPreviewReactString, buildReactString } from './builder/react';
 import { templateConfig } from './templateConfig';
 import { TemplateName } from './types';
-import { buildHtml } from './builder/html';
-
-const sampleBusinessData: BusinessData = {
-  shopName: 'The Coffee House',
-  description: 'A cozy place to enjoy your favorite coffee.',
-  location: '123 Java Street, Caffeine City',
-  reviewers: [
-    { name: 'John Doe', review: 'Great coffee and atmosphere!' },
-    { name: 'Jane Smith', review: 'A perfect place to relax and work.' },
-  ],
-  contacts: {
-    phone: '123-456-7890',
-    email: 'info@coffeehouse.com',
-  },
-  sections: [
-    {
-      id: 1,
-      title: 'Special Offers',
-      widgets: [{ id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }],
-    },
-  ], // Sample section with widgets
-};
+import { buildHtml, buildPreviewHtml } from './builder/html';
+import { getTemplateScript } from './util/template';
+import { initialData } from './initialData';
 
 const app = express();
 
@@ -41,9 +21,17 @@ app.get('/:templateName', async (req: Request, res: Response) => {
     res.status(404).send('Template not found');
     return;
   }
+  let appString: string;
+  let html: string;
+  const { script, previewScript } = getTemplateScript(templateName);
 
-  const appString = buildReactString(isPreview, templateName, sampleBusinessData);
-  const html = buildHtml(sampleBusinessData, appString, templateName, isPreview);
+  if (isPreview) {
+    appString = buildPreviewReactString(templateName, initialData);
+    html = buildPreviewHtml(initialData, appString, previewScript);
+  } else {
+    appString = buildReactString(templateName, initialData);
+    html = buildHtml(initialData, appString, script);
+  }
 
   res.send(html);
 });

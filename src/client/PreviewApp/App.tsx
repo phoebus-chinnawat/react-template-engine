@@ -1,11 +1,11 @@
 // App.tsx
 import { Box, CssBaseline, Grid, styled, ThemeProvider, Typography } from '@mui/material';
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
 import { BusinessData, Section, Widget } from '../types';
 import Editor from './components/Editor';
 import theme from './theme';
 import WidgetRegistry from './widgets/WidgetRegistry';
-import useLocalStorage from '../hooks/useLocalstorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const StyledGridContainer = styled(Grid)(({ theme }) => ({
   height: '100vh',
@@ -39,9 +39,14 @@ interface IPreviewAppProps {
 const PreviewApp: FC<IPreviewAppProps> = props => {
   const [business, setBusiness] = useLocalStorage<BusinessData>('bussinessData', props.business);
 
+  useEffect(() => {
+    if (!business) {
+      setBusiness(props.business);
+    }
+  }, [props.business]);
+
   const onSubmit = (data: BusinessData) => {
     setBusiness(data);
-    console.log('123123123', data);
   };
 
   return (
