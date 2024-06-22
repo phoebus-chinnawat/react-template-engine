@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/tailwind.css';
 import { AppProps } from '../../types';
 
 export const TailwindTemplate: React.FC<AppProps> = props => {

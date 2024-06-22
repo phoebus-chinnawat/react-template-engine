@@ -6,8 +6,14 @@ const config: Configuration = {
   entry: {
     [templateConfig.mui.script]: './src/client/templates/mui/index.tsx',
     [templateConfig.mui.previewScript]: './src/client/Editor/templates/mui.tsx',
-    [templateConfig.tailwind.script]: './src/client/templates/tailwind/index.tsx',
-    [templateConfig.tailwind.previewScript]: './src/client/Editor/templates/tailwind.tsx',
+    [templateConfig.tailwind.script]: [
+      './src/client/templates/tailwind/index.tsx',
+      './src/client/styles/tailwind.css',
+    ],
+    [templateConfig.tailwind.previewScript]: [
+      './src/client/Editor/templates/tailwind.tsx',
+      './src/client/styles/tailwind.css',
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
