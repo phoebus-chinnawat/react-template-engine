@@ -2,7 +2,7 @@ import { MuiTemplate } from '../client/templates/mui/App';
 import { TailwindTemplate } from '../client/templates/tailwind/App';
 import { AppProps } from '../client/types';
 import { templateConfig } from '../templateConfig';
-import { TemplateName, TemplateScript } from '../types';
+import { TemplateConfig, TemplateName } from '../types';
 
 export function getTemplateElement(templateName: TemplateName): React.FC<AppProps> {
   switch (templateName) {
@@ -13,7 +13,7 @@ export function getTemplateElement(templateName: TemplateName): React.FC<AppProp
   }
 }
 
-export function getTemplateScript(templateName: TemplateName): TemplateScript {
+export function getTemplateConfig(templateName: TemplateName): TemplateConfig {
   switch (templateName) {
     case 'mui':
       return templateConfig.mui;

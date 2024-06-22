@@ -1,3 +1,4 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import { Configuration } from 'webpack';
 import { templateConfig } from './src/templateConfig';
@@ -45,6 +46,28 @@ const config: Configuration = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/mui/index.html',
+      filename: 'mui.html',
+      chunks: [templateConfig.mui.script],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/mui/preview.html',
+      filename: 'mui-preview.html',
+      chunks: [templateConfig.mui.previewScript],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/tailwind/index.html',
+      filename: 'tailwind.html',
+      chunks: [templateConfig.tailwind.script],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/client/templates/tailwind/preview.html',
+      filename: 'tailwind-preview.html',
+      chunks: [templateConfig.tailwind.previewScript],
+    }),
+  ],
 };
 
 export default config;

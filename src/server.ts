@@ -4,13 +4,11 @@ import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { buildHtml, buildPreviewHtml } from './builder/html';
-import { buildPreviewReactString, buildReactString } from './builder/react';
 import { BusinessData } from './client/types';
-import { initialData } from './initialData';
+import { buildPreload } from './script/preloadBuilder';
 import { templateConfig } from './templateConfig';
 import { TemplateName } from './types';
-import { getTemplateScript } from './util/template';
+import { getTemplateConfig } from './util/template';
 
 const app = express();
 
@@ -20,25 +18,16 @@ app.use(bodyParser.json());
 
 app.get('/:templateName', async (req: Request, res: Response) => {
   const templateName = req.params.templateName as unknown as TemplateName;
-  const isPreview = !!req.query.isPreview || false;
 
   if (!templateConfig[templateName]) {
     res.status(404).send('Template not found');
     return;
   }
-  let appString: string;
-  let html: string;
-  const { script, previewScript } = getTemplateScript(templateName);
 
-  if (isPreview) {
-    appString = buildPreviewReactString(templateName, initialData);
-    html = buildPreviewHtml(initialData, appString, previewScript);
-  } else {
-    appString = buildReactString(templateName, initialData);
-    html = buildHtml(initialData, appString, script);
-  }
+  const { previewHtml } = getTemplateConfig(templateName);
+  const htmlString = readFileSync(path.join(__dirname, `../dist/${previewHtml}.html`), 'utf-8');
 
-  res.send(html);
+  res.send(htmlString);
 });
 
 app.post('/publish', async (req: Request, res: Response) => {
@@ -50,17 +39,18 @@ app.post('/publish', async (req: Request, res: Response) => {
     return;
   }
 
-  const { script } = getTemplateScript(templateName);
-  const appString = buildReactString(templateName, businessData);
-  const html = buildHtml(businessData, appString, script);
+  const { script, html } = getTemplateConfig(templateName);
 
+  const htmlString = readFileSync(path.join(__dirname, `../dist/${html}.html`), 'utf-8');
   const scriptContent = readFileSync(path.join(__dirname, `../dist/${script}.bundle.js`), 'utf-8');
+  const preloadScript = buildPreload(businessData);
   const archive = archiver('zip', {
     zlib: { level: 9 }, // Sets the compression level
   });
 
   archive.pipe(res);
-  archive.append(html, { name: 'index.html' });
+  archive.append(htmlString, { name: 'index.html' });
+  archive.append(preloadScript, { name: 'preload.js' });
   archive.append(scriptContent, { name: `${script}.bundle.js` });
   res.attachment('website.zip');
   archive.finalize();

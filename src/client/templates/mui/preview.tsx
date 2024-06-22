@@ -6,7 +6,6 @@ import { publish } from '../../service/publish';
 import { BusinessData } from '../../types';
 import { MuiTemplate } from './App';
 
-const business = initialData;
 const rootNode = document.getElementById('root');
 const onPublish = async (data: BusinessData) => {
   publish('mui', data);
@@ -15,9 +14,9 @@ if (rootNode) {
   const root = createRoot(rootNode);
   root.render(
     <PreviewApp
-      business={business}
+      business={initialData}
       onPublish={onPublish}
-      render={businessData => <MuiTemplate business={businessData} />}
+      render={initialData => <MuiTemplate business={initialData} />}
     />,
   );
 } else {
