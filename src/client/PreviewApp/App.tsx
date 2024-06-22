@@ -1,10 +1,11 @@
 // App.tsx
 import { Box, CssBaseline, Grid, styled, ThemeProvider, Typography } from '@mui/material';
-import React, { FC, ReactNode, useCallback, useState } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { BusinessData, Section, Widget } from '../types';
 import Editor from './components/Editor';
 import theme from './theme';
 import WidgetRegistry from './widgets/WidgetRegistry';
+import useLocalStorage from '../hooks/useLocalstorage';
 
 const StyledGridContainer = styled(Grid)(({ theme }) => ({
   height: '100vh',
@@ -35,13 +36,13 @@ interface IPreviewAppProps {
   business: BusinessData;
 }
 
-const App: FC<IPreviewAppProps> = props => {
-  const [business, setBusiness] = useState<BusinessData>(props.business);
+const PreviewApp: FC<IPreviewAppProps> = props => {
+  const [business, setBusiness] = useLocalStorage<BusinessData>('bussinessData', props.business);
 
-  const onSubmit = useCallback((data: BusinessData) => {
-    console.log('data', data);
+  const onSubmit = (data: BusinessData) => {
     setBusiness(data);
-  }, []);
+    console.log('123123123', data);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +50,11 @@ const App: FC<IPreviewAppProps> = props => {
       <StyledGridContainer container spacing={0.5}>
         <StyledSidebar item xs={3}>
           <Typography variant="h5">SekWeb.site</Typography>
-          <Editor data={business} onChange={data => setBusiness(data)} />
+          <Editor
+            data={business}
+            onChange={data => setBusiness(data)}
+            onSubmit={data => onSubmit(data)}
+          />
         </StyledSidebar>
         <StyledMainContent item xs={9}>
           {props.render ? props.render(business) : props.children}
@@ -70,4 +75,4 @@ const App: FC<IPreviewAppProps> = props => {
   );
 };
 
-export default App;
+export default PreviewApp;

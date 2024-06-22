@@ -8,9 +8,10 @@ import WidgetRegistry from '../widgets/WidgetRegistry';
 interface EditorProps {
   data: BusinessData;
   onChange: (data: BusinessData) => void;
+  onSubmit: (data: BusinessData) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ data, onChange }) => {
+const Editor: React.FC<EditorProps> = ({ data, onChange, onSubmit }) => {
   const { control, handleSubmit, register } = useForm({
     defaultValues: data,
   });
@@ -19,10 +20,6 @@ const Editor: React.FC<EditorProps> = ({ data, onChange }) => {
     control,
     name: 'sections',
   });
-
-  const onSubmit = (formData: BusinessData) => {
-    onChange(formData);
-  };
 
   const addWidget = (sectionIndex: number, widgetType: string) => {
     const newSections = [...data.sections];

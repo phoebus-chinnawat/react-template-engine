@@ -5,13 +5,13 @@ import { templateConfig } from './src/templateConfig';
 const config: Configuration = {
   entry: {
     [templateConfig.mui.script]: './src/client/templates/mui/index.tsx',
-    [templateConfig.mui.previewScript]: './src/client/Editor/templates/mui.tsx',
+    [templateConfig.mui.previewScript]: './src/client/templates/mui/preview.tsx',
     [templateConfig.tailwind.script]: [
       './src/client/templates/tailwind/index.tsx',
       './src/client/styles/tailwind.css',
     ],
     [templateConfig.tailwind.previewScript]: [
-      './src/client/Editor/templates/tailwind.tsx',
+      './src/client/templates/tailwind/preview.tsx',
       './src/client/styles/tailwind.css',
     ],
   },

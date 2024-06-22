@@ -1,11 +1,11 @@
 // server.ts
 import express, { Request, Response } from 'express';
 import path from 'path';
-import { buildHtml } from './builder/html';
 import { buildReactString } from './builder/react';
 import { BusinessData } from './client/types';
 import { templateConfig } from './templateConfig';
 import { TemplateName } from './types';
+import { buildHtml } from './builder/html';
 
 const sampleBusinessData: BusinessData = {
   shopName: 'The Coffee House',

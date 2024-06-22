@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import App from '../client/Editor/App';
+import PreviewApp from '../client/PreviewApp/App';
 import { BusinessData } from '../client/types';
 import { TemplateName } from '../types';
 import { getTemplateElement } from '../util/template';
@@ -15,7 +15,7 @@ export function buildReactString(
   const AppElement = React.createElement(Template, { business: businessData });
 
   if (isPreview) {
-    const EditorElement = React.createElement(App, { business: businessData }, AppElement);
+    const EditorElement = React.createElement(PreviewApp, { business: businessData }, AppElement);
     appString = ReactDOMServer.renderToString(EditorElement);
   } else {
     appString = ReactDOMServer.renderToString(AppElement);
