@@ -6,6 +6,7 @@ import { templateConfig } from './src/templateConfig';
 
 const config: Configuration & DevServerConfiguration = {
   mode: 'development',
+  devtool: 'inline-source-map',
   entry: {
     [templateConfig.mui.script]: './src/client/templates/mui/index.tsx',
     [templateConfig.mui.previewScript]: './src/client/templates/mui/preview.tsx',
