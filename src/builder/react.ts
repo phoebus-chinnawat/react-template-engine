@@ -18,7 +18,12 @@ export function buildPreviewReactString(
 ): string {
   const Template = getTemplateElement(templateName);
   const AppElement = React.createElement(Template, { business: businessData });
-  const EditorElement = React.createElement(PreviewApp, { business: businessData }, AppElement);
+  const EditorElement = React.createElement(
+    PreviewApp,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    { business: businessData, onPublish: async data => {} },
+    AppElement,
+  );
 
   return ReactDOMServer.renderToString(EditorElement);
 }

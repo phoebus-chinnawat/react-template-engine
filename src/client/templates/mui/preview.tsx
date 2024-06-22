@@ -1,16 +1,22 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { MuiTemplate } from './App';
-import PreviewApp from '../../PreviewApp/App';
 import { initialData } from '../../../initialData';
+import PreviewApp from '../../PreviewApp/App';
+import { publish } from '../../service/publish';
+import { BusinessData } from '../../types';
+import { MuiTemplate } from './App';
 
 const business = initialData;
 const rootNode = document.getElementById('root');
+const onPublish = async (data: BusinessData) => {
+  publish('mui', data);
+};
 if (rootNode) {
   const root = createRoot(rootNode);
   root.render(
     <PreviewApp
       business={business}
+      onPublish={onPublish}
       render={businessData => <MuiTemplate business={businessData} />}
     />,
   );

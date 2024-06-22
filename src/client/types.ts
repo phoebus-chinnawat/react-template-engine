@@ -1,3 +1,5 @@
+import { TemplateName } from '../types';
+
 export interface Widget {
   id: number;
   type: string;
@@ -11,6 +13,7 @@ export interface Section {
 }
 
 export interface BusinessData {
+  templateName?: TemplateName;
   shopName: string;
   description: string;
   location: string;

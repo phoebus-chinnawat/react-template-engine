@@ -1,7 +1,7 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import { Configuration } from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { templateConfig } from './src/templateConfig';
 
 const config: Configuration & DevServerConfiguration = {
