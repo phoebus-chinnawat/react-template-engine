@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { initialData } from '../../../initialData';
 import PreviewApp from '../../PreviewApp/App';
 import { publish } from '../../service/publish';
+import { RenderData } from '../../types';
 import { MuiTemplate } from './App';
 
 const rootNode = document.getElementById('root');

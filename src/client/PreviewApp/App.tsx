@@ -2,20 +2,18 @@
 import { CssBaseline, Grid, styled, ThemeProvider, Typography } from '@mui/material';
 import React, { FC, ReactNode, useEffect } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { BusinessData, RenderData } from '../types';
+import { RenderData } from '../types';
 import Editor from './components/Editor';
 import theme from './theme';
 
 const StyledGridContainer = styled(Grid)(() => ({
   height: '100vh',
-  overflow: 'hidden',
 }));
 
 const StyledSidebar = styled(Grid)(({ theme }) => ({
   position: 'sticky',
   top: 0,
   height: '100vh',
-  overflow: 'hidden',
   backgroundColor: theme.palette.background.paper,
   padding: theme.spacing(2),
   paddingLeft: theme.spacing(4),
@@ -49,7 +47,7 @@ const PreviewApp: FC<IPreviewAppProps> = props => {
     }
   }, [initialRenderData]);
 
-  const onSubmit = (data: BusinessData) => {
+  const onSubmit = (data: RenderData) => {
     setRenderBusiness({
       ...renderData,
       ...data,
@@ -86,23 +84,12 @@ const PreviewApp: FC<IPreviewAppProps> = props => {
           <Typography variant="h5">SekWeb.site</Typography>
           <Editor
             data={renderData}
-            onSubmit={data => onSubmit(data)}
-            onPublish={data => onPublish(data as RenderData)}
+            onChange={data => onSubmit(data)}
+            onPublish={data => onPublish(data)}
           />
         </StyledSidebar>
         <StyledMainContent item xs={9}>
           {props.render ? props.render(renderData) : props.children}
-          {/* {business.sections.map((section: Section) => (
-            <Box key={section.id} mt={2} p={2} border="1px solid #ccc">
-              <Typography variant="h6">{section.title}</Typography>
-              {section.widgets.map((widget: Widget) => {
-                const WidgetComponent = WidgetRegistry[widget.type];
-                return WidgetComponent ? (
-                  <WidgetComponent key={widget.id} {...widget.props} />
-                ) : null;
-              })}
-            </Box>
-          ))} */}
         </StyledMainContent>
       </StyledGridContainer>
     </ThemeProvider>

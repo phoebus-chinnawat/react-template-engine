@@ -1,13 +1,15 @@
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { FC } from 'react';
-import { BusinessData } from '../../../types';
+import { RenderData, WidgetData } from '../../../types';
+import { renderWidgets } from '../../../widgets/utils/render';
 import { Section } from '../components/Section';
 
 interface IContactUsProps {
-  data: BusinessData;
+  data: RenderData;
 }
 
 export const ContactUs: FC<IContactUsProps> = props => {
+  const widgets = props.data.section.contacts.widgets;
   return (
     <Section>
       <Container>
@@ -34,6 +36,7 @@ export const ContactUs: FC<IContactUsProps> = props => {
             </Grid>
           </Grid>
         </Box>
+        {renderWidgets(widgets as WidgetData)}
       </Container>
     </Section>
   );

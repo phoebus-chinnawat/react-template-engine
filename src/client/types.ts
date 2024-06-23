@@ -13,7 +13,7 @@ export type WidgetData = {
 export interface SectionDetail<T> {
   detail: T;
   order: number;
-  widgets: WidgetData;
+  widgets: Partial<WidgetData> | undefined;
 }
 
 export type Section = {

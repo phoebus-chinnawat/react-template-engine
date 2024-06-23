@@ -11,21 +11,36 @@ const CountdownContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
   textAlign: 'center',
+  margin: theme.spacing(2),
 }));
 
 const Countdown: React.FC<ICountdownProps> = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate));
 
   useEffect(() => {
+    if (!timeLeft) return;
+
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(targetDate));
+      const newTimeLeft = calculateTimeLeft(targetDate);
+      if (!newTimeLeft) {
+        clearInterval(timer);
+      }
+      setTimeLeft(newTimeLeft);
     }, 1000);
+
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, [targetDate, timeLeft]);
+
+  if (!timeLeft) {
+    return (
+      <CountdownContainer>
+        <Typography variant="h6">The countdown has ended!</Typography>
+      </CountdownContainer>
+    );
+  }
 
   return (
     <CountdownContainer>
-      <Typography variant="h4">Countdown</Typography>
       <Typography variant="h6">
         {timeLeft.days} Days {timeLeft.hours} Hours {timeLeft.minutes} Minutes {timeLeft.seconds}{' '}
         Seconds
@@ -36,9 +51,9 @@ const Countdown: React.FC<ICountdownProps> = ({ targetDate }) => {
 
 const calculateTimeLeft = (
   targetDate: string,
-): Partial<{ days: number; hours: number; minutes: number; seconds: number }> => {
+): Partial<{ days: number; hours: number; minutes: number; seconds: number }> | null => {
   const difference = +new Date(targetDate) - +new Date();
-  let timeLeft = {};
+  let timeLeft = null;
 
   if (difference > 0) {
     timeLeft = {

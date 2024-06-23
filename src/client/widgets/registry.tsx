@@ -1,10 +1,14 @@
 import Countdown, { ICountdownProps } from './Countdown';
+import SocialMediaFeed, { ISocialMediaFeedProps } from './SocialMediaFeed';
 
-export type WidgetId = 'countdown';
+export type WidgetId = 'countdown' | 'socialMediaFeed';
 
 export type IWidget = {
   countdown: {
     props: ICountdownProps;
+  };
+  socialMediaFeed: {
+    props: ISocialMediaFeedProps;
   };
 };
 
@@ -13,4 +17,5 @@ export type IWidgetRegistry = Record<WidgetId, React.FC<any>>;
 
 export const WidgetRegistry: IWidgetRegistry = {
   countdown: Countdown,
+  socialMediaFeed: SocialMediaFeed,
 };

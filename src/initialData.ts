@@ -1,4 +1,4 @@
-import { BusinessData, RenderData, WidgetData } from './client/types';
+import { BusinessData, RenderData } from './client/types';
 
 export const initialBusinessData: BusinessData = {
   shopName: 'The Coffee House',
@@ -25,7 +25,7 @@ export const initialData: RenderData = {
           position: 'top',
           details: {
             props: {
-              targetDate: new Date().toDateString(),
+              targetDate: 'Sun Jun 24 2024',
             },
           },
         },
@@ -34,22 +34,32 @@ export const initialData: RenderData = {
     contacts: {
       detail: initialBusinessData.contacts,
       order: 2,
-      widgets: {} as WidgetData,
+      widgets: {
+        socialMediaFeed: {
+          position: 'bottom',
+          details: {
+            props: {
+              handle: '5gcoffeehouse',
+              platform: 'instagram',
+            },
+          },
+        },
+      },
     },
     description: {
       detail: initialBusinessData.description,
       order: 3,
-      widgets: {} as WidgetData,
+      widgets: {},
     },
     location: {
       detail: initialBusinessData.location,
       order: 4,
-      widgets: {} as WidgetData,
+      widgets: {},
     },
     reviewers: {
       detail: initialBusinessData.reviewers,
       order: 5,
-      widgets: {} as WidgetData,
+      widgets: {},
     },
   },
 };
