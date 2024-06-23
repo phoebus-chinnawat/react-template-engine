@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { BusinessData } from './client/types';
+import { RenderData } from './client/types';
 import { buildPreload } from './script/preloadBuilder';
 import { templateConfig } from './templateConfig';
 import { TemplateName } from './types';
@@ -31,7 +31,7 @@ app.get('/:templateName', async (req: Request, res: Response) => {
 });
 
 app.post('/publish', async (req: Request, res: Response) => {
-  const businessData: BusinessData = req.body;
+  const businessData: RenderData = req.body;
   const { templateName } = businessData;
 
   if (!templateName) {

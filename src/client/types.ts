@@ -1,27 +1,46 @@
 import { TemplateName } from '../types';
+import { IWidget, WidgetId } from './widgets/registry';
 
-export interface Widget {
-  id: number;
-  type: string;
-  props?: any;
+export interface Widget<T> {
+  details: T;
+  position: 'top' | 'left' | 'rignt' | 'bottom';
 }
 
-export interface Section {
-  id: number;
-  title: string;
-  widgets: Widget[];
+export type WidgetData = {
+  [K in WidgetId]: Widget<IWidget[K]>;
+};
+
+export interface SectionDetail<T> {
+  detail: T;
+  order: number;
+  widgets: WidgetData;
 }
 
+export type Section = {
+  [K in keyof BusinessData]: SectionDetail<BusinessData[K]>;
+};
+export interface Reviewer {
+  name: string;
+  review: string;
+}
+
+export interface Contacts {
+  phone: string;
+  email: string;
+}
 export interface BusinessData {
-  templateName?: TemplateName;
   shopName: string;
   description: string;
   location: string;
-  reviewers: { name: string; review: string }[];
-  contacts: { phone: string; email: string };
-  sections: Section[];
+  reviewers: Reviewer[];
+  contacts: Contacts;
 }
 
+export type RenderData = BusinessData & {
+  templateName?: TemplateName;
+  section: Section;
+};
+
 export interface AppProps {
-  business: BusinessData;
+  data: RenderData;
 }

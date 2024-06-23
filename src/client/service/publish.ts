@@ -1,7 +1,7 @@
 import { TemplateName } from '../../types';
-import { BusinessData } from '../types';
+import { RenderData } from '../types';
 
-export async function publish(template: TemplateName, business: BusinessData): Promise<void> {
+export async function publish(template: TemplateName, business: RenderData): Promise<void> {
   business.templateName = template;
   const response = await fetch('/publish', {
     method: 'POST',

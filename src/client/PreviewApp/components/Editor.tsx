@@ -1,32 +1,30 @@
 // Editor.tsx
 import { Box, Button, TextField } from '@mui/material';
 import React from 'react';
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { BusinessData, Widget } from '../../types';
-import WidgetRegistry from '../widgets/WidgetRegistry';
+import { Controller, useForm } from 'react-hook-form';
+import { BusinessData } from '../../types';
 
 interface EditorProps {
   data: BusinessData;
-  onChange: (data: BusinessData) => void;
   onSubmit: (data: BusinessData) => void;
   onPublish: (data: BusinessData) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ data, onChange, onSubmit, onPublish }) => {
-  const { control, handleSubmit, register } = useForm({
+const Editor: React.FC<EditorProps> = ({ data, onSubmit, onPublish }) => {
+  const { control, handleSubmit } = useForm({
     defaultValues: data,
   });
 
-  const { fields: sectionFields, append: appendSection } = useFieldArray({
-    control,
-    name: 'sections',
-  });
+  // const { fields: sectionFields, append: appendSection } = useFieldArray({
+  //   control,
+  //   name: 'sections',
+  // });
 
-  const addWidget = (sectionIndex: number, widgetType: string) => {
-    const newSections = [...data.sections];
-    newSections[sectionIndex].widgets.push({ id: Date.now(), type: widgetType });
-    onChange({ ...data, sections: newSections });
-  };
+  // const addWidget = (sectionIndex: number, widgetType: string) => {
+  //   const newSections = [...data.sections];
+  //   newSections[sectionIndex].widgets.push({ id: Date.now(), type: widgetType });
+  //   onChange({ ...data, sections: newSections });
+  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,15 +55,15 @@ const Editor: React.FC<EditorProps> = ({ data, onChange, onSubmit, onPublish }) 
         <Button variant="contained" color="secondary" type="button" onClick={() => onPublish(data)}>
           Publish
         </Button>
-        <Button
+        {/* <Button
           variant="outlined"
           color="secondary"
           onClick={() => appendSection({ id: Date.now(), title: '', widgets: [] })}
         >
           Add Section
-        </Button>
+        </Button> */}
 
-        {sectionFields.map((section, sectionIndex) => (
+        {/* {sectionFields.map((section, sectionIndex) => (
           <Box key={section.id} mt={2} p={2} border="1px solid #ccc">
             <TextField
               fullWidth
@@ -92,7 +90,7 @@ const Editor: React.FC<EditorProps> = ({ data, onChange, onSubmit, onPublish }) 
               return WidgetComponent ? <WidgetComponent key={widget.id} {...widget.props} /> : null;
             })}
           </Box>
-        ))}
+        ))} */}
       </Box>
     </form>
   );
