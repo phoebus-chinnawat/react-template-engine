@@ -6,7 +6,7 @@ const business = window.__INITIAL_DATA__.business;
 const rootNode = document.getElementById('root');
 if (rootNode) {
   const root = createRoot(rootNode);
-  root.render(<TailwindTemplate business={business} />);
+  root.render(<TailwindTemplate data={business} />);
 } else {
   console.error('cannot create root');
 }

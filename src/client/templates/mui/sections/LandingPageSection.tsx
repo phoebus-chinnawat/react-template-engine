@@ -1,7 +1,8 @@
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import React from 'react';
-import { BusinessData } from '../../../types';
+import { RenderData, WidgetData } from '../../../types';
+import { renderWidgets } from '../../../widgets/utils/render';
 import { Content } from '../components/Content';
 
 const BackgroundImage = styled(Box)(({ theme }) => ({
@@ -29,10 +30,11 @@ const BackgroundImage = styled(Box)(({ theme }) => ({
 }));
 
 interface LandingPageSection {
-  business: BusinessData;
+  business: RenderData;
 }
 
 const LandingPageSection: React.FC<LandingPageSection> = props => {
+  const widgets = props.business.section.shopName.widgets;
   return (
     <BackgroundImage>
       <Content>
@@ -42,6 +44,7 @@ const LandingPageSection: React.FC<LandingPageSection> = props => {
         <Typography variant="h5" paragraph>
           {props.business.description}
         </Typography>
+        {renderWidgets(widgets as WidgetData)}
         <Button variant="contained" color="primary">
           Explore Menu
         </Button>

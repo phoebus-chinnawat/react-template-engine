@@ -1,6 +1,6 @@
-import { BusinessData } from './client/types';
+import { BusinessData, RenderData } from './client/types';
 
-export const initialData: BusinessData = {
+export const initialBusinessData: BusinessData = {
   shopName: 'The Coffee House',
   description: 'A cozy place to enjoy your favorite coffee.',
   location: '123 Java Street, Caffeine City',
@@ -12,11 +12,54 @@ export const initialData: BusinessData = {
     phone: '123-456-7890',
     email: 'info@coffeehouse.com',
   },
-  sections: [
-    {
-      id: 1,
-      title: 'Special Offers',
-      widgets: [{ id: 1, type: 'countdown', props: { targetDate: '2024-12-31T23:59:59' } }],
+};
+
+export const initialData: RenderData = {
+  ...initialBusinessData,
+  section: {
+    shopName: {
+      detail: initialBusinessData.shopName,
+      order: 1,
+      widgets: {
+        countdown: {
+          position: 'top',
+          details: {
+            props: {
+              targetDate: 'Sun Jun 24 2024',
+            },
+          },
+        },
+      },
     },
-  ], // Sample section with widgets
+    contacts: {
+      detail: initialBusinessData.contacts,
+      order: 2,
+      widgets: {
+        socialMediaFeed: {
+          position: 'bottom',
+          details: {
+            props: {
+              handle: '5gcoffeehouse',
+              platform: 'instagram',
+            },
+          },
+        },
+      },
+    },
+    description: {
+      detail: initialBusinessData.description,
+      order: 3,
+      widgets: {},
+    },
+    location: {
+      detail: initialBusinessData.location,
+      order: 4,
+      widgets: {},
+    },
+    reviewers: {
+      detail: initialBusinessData.reviewers,
+      order: 5,
+      widgets: {},
+    },
+  },
 };

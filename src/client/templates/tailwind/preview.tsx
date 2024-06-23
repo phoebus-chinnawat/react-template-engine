@@ -3,20 +3,20 @@ import { createRoot } from 'react-dom/client';
 import { initialData } from '../../../initialData';
 import PreviewApp from '../../PreviewApp/App';
 import { publish } from '../../service/publish';
-import { BusinessData } from '../../types';
+import { RenderData } from '../../types';
 import { TailwindTemplate } from './App';
 
 const rootNode = document.getElementById('root');
-const onPublish = async (data: BusinessData) => {
+const onPublish = async (data: RenderData) => {
   publish('tailwind', data);
 };
 if (rootNode) {
   const root = createRoot(rootNode);
   root.render(
     <PreviewApp
-      business={initialData}
+      renderData={initialData}
       onPublish={onPublish}
-      render={initialData => <TailwindTemplate business={initialData} />}
+      render={initialData => <TailwindTemplate data={initialData} />}
     />,
   );
 } else {

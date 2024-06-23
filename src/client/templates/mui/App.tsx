@@ -24,11 +24,11 @@ export const MuiTemplate: React.FC<AppProps> = props => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar data={props.business} />
-      <LandingPageSection business={props.business} />
-      <Location data={props.business} />
-      <Reviewers data={props.business} />
-      <ContactUs data={props.business} />
+      <Navbar data={props.data} />
+      <LandingPageSection business={props.data} />
+      <Location data={props.data} />
+      <Reviewers data={props.data} />
+      <ContactUs data={props.data} />
     </ThemeProvider>
   );
 };
